@@ -18,6 +18,8 @@ public class ClientiController {
     @Autowired
     IDaoSql dao;
 
+    // hello
+    
     @GetMapping("/findAll")
     public ResponseEntity<List<Clienti>> getArticoli() throws NotFoundException {
         List<Clienti> clienti = dao.findAllClienti();

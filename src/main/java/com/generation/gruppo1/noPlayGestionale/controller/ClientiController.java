@@ -60,11 +60,18 @@ public class ClientiController {
             String MsgErr = String.format("Cliente con id: %d non presente! ", id);
             throw new NotFoundException(MsgErr);
         }
-        dao.deleteCliente(id);
+        if(dao.deleteCliente(id)){
         Map<String, String> responseMap = Map.of(
                 "code", HttpStatus.OK.toString(),
                 "message", "Cliente " + cliente.getRagionesociale() + " eliminato con successo");
         return responseToClient(responseMap);
+        }
+        else{
+            Map<String, String> responseMap = Map.of(
+                    "code", HttpStatus.NOT_MODIFIED.toString(),
+                    "message", "Cliente " + cliente.getId() + " eliminazione fallita.");
+            return responseToClient(responseMap);
+        }
     }
 
     @PutMapping("updateCliente")

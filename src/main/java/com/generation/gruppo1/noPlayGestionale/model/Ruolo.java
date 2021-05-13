@@ -1,6 +1,9 @@
 package com.generation.gruppo1.noPlayGestionale.model;
 import com.generation.gruppo1.noPlayGestionale.util.IMappablePro;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Ruolo implements IMappablePro{
 
     private int id;
@@ -37,4 +40,12 @@ public class Ruolo implements IMappablePro{
         return "{id:" + id + ", mansione:" + mansione + "}";
     }
 
+    public Map<String, String> isValidForStorage(){
+        Map<String, String> validationMap = new HashMap<>(Map.of("status", "success"));
+        if(mansione == null || mansione.equals("")) {
+            validationMap.replace("status", "error");
+            validationMap.put("message", "Field: 'mansione' not valid or null or not present");
+        }
+        return validationMap;
+    }
 }

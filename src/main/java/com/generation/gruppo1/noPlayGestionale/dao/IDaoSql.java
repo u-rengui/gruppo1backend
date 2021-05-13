@@ -21,7 +21,7 @@ public interface IDaoSql {
 
     List<Ruolo> findAllRuoli();
     Ruolo findRuoloById(int id);
-    void addRuolo(Ruolo ruolo);
-    void deleteRuolo(int id);
-    void updateRuolo(Ruolo ruolo);
+    boolean addRuolo(Ruolo ruolo);
+    boolean deleteRuolo(int id);
+    boolean updateRuolo(Ruolo ruolo);
 }

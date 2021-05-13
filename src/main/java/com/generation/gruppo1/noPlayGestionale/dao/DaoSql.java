@@ -140,48 +140,33 @@ public class DaoSql extends BasicDao implements IDaoSql{
                 personale.getStipendio(), personale.getDataassunzione(),
                 personale.getRuolo().getId(), personale.getId());
     }
-
+// ** DAO RUOLI
     @Override
     public List<Ruolo> findAllRuoli() {
         List<Ruolo> ris = new ArrayList<>();
-
         List<Map<String, String>> maps = getAll(RUOLI);
-
-        for (Map<String, String> map : maps) {
+        for (Map<String, String> map : maps)
             ris.add(IMappablePro.fromMap(Ruolo.class, map));
-        }
-
         return ris;
     }
-
     @Override
     public Ruolo findRuoloById(int id) {
         Ruolo ris = null;
-
         Map<String, String> map = getOne(RUOLI_WHERE_ID, id);
-
-        if(map != null) {
+        if(map != null)
             ris = IMappablePro.fromMap(Ruolo.class, map);
-        }
-
         return ris;
     }
-
     @Override
-    public void addRuolo(Ruolo ruolo) {
-        execute(INSERT_INTO_RUOLI, ruolo.getMansione());
+    public boolean addRuolo(Ruolo ruolo) {
+        return execute(INSERT_INTO_RUOLI, ruolo.getMansione());
     }
-
     @Override
-    public void deleteRuolo(int id) {
-        execute(DELETE_FROM_RUOLI, id);
+    public boolean deleteRuolo(int id) {
+        return execute(DELETE_FROM_RUOLI, id);
     }
-
     @Override
-    public void updateRuolo(Ruolo ruolo) {
-        execute(UPDATE_RUOLI, ruolo.getMansione());
+    public boolean updateRuolo(Ruolo ruolo) {
+        return execute(UPDATE_RUOLI, ruolo.getMansione(), ruolo.getId());
     }
-
-
-
 }

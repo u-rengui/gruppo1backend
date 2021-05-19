@@ -16,8 +16,8 @@ public interface IDaoSql {
     List<Personale> findAllPersonale();
     Personale findPersonaleById(int id);
     void addPersonale(Personale personale);
-    void deletePersonale(int id);
-    void updatePersonale(Personale personale);
+    boolean deletePersonale(int id);
+    boolean updatePersonale(Personale personale);
 
     List<Ruolo> findAllRuoli();
     Ruolo findRuoloById(int id);

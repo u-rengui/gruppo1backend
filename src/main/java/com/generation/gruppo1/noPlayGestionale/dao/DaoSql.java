@@ -129,13 +129,12 @@ public class DaoSql extends BasicDao implements IDaoSql{
     }
 
     @Override
-    public void deletePersonale(int id) {
-        execute(DELETE_FROM_PERSONALE, id);
+    public boolean deletePersonale(int id) { return execute(DELETE_FROM_PERSONALE, id);
     }
 
     @Override
-    public void updatePersonale(Personale personale) {
-        execute(UPDATE_PERSONALE_WHERE_ID,
+    public boolean updatePersonale(Personale personale) {
+        return execute(UPDATE_PERSONALE_WHERE_ID,
                 personale.getNome(), personale.getCognome(), personale.getDdn(),
                 personale.getStipendio(), personale.getDataassunzione(),
                 personale.getRuolo().getId(), personale.getId());

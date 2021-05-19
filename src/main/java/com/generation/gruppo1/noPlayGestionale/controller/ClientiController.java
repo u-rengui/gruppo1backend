@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/clienti")
 public class ClientiController {
@@ -24,7 +23,7 @@ public class ClientiController {
     IDaoSql dao;
 
     @GetMapping("/findAll")
-    public ResponseEntity<List<Clienti>> getArticoli() throws NotFoundException {
+    public ResponseEntity<List<Clienti>> getClienti() throws NotFoundException {
         List<Clienti> clienti = dao.findAllClienti();
         if(clienti == null){
             String ErrMsg = "La lista articoli è vuota";

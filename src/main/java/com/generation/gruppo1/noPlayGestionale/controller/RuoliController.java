@@ -17,7 +17,6 @@ import com.generation.gruppo1.noPlayGestionale.model.Ruolo;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/ruoli")
 public class RuoliController {

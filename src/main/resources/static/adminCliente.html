@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Clienti</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="css/dip.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+<script src="js/adminClient.js" ></script>
+
+
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+		<div class="container">
+		  <a class="navbar-brand" href="homeadmin.html"><i class="bi bi-slash-circle"></i>&nbsp;|&nbsp;NoPlay</h1></a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+		  <div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+			  <li class="nav-item active">
+				<a class="nav-link" href="homeadmin.html">Home</a>
+			  </li>
+			  <li class="nav-item active">
+					<a class="nav-link" href="selezionaGestionaleAdmin.html">Seleziona</a>
+				</li>
+			  <li class="nav-item active">
+				<a class="nav-link" href="/logout">Log Out</a>
+			  </li>
+			</ul>
+		  </div>
+		</div>
+	  </nav>
+
+<div class="container-xl">
+	<div class="table-responsive">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-6">
+						<h2><b>Clienti</b></h2>
+					</div>
+					<div class="col-sm-6">
+						<a href="#addModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Cliente</span></a>						
+					</div>
+				</div>
+			</div>
+			<table id="table" class="table table-striped table-hover" data-toggle="table"
+			data-height="690" data-pagination="true" data-url="/api/clienti/findAll" >
+				<thead>
+					<tr>
+						<th data-field="ragionesociale">Ragionesociale</th>
+						<th data-field="partitaiva">Partitaiva</th>
+						<th data-field="indirizzo">Indirizzo</th>
+						<th data-field="email">Email</th>
+						<th data-field="ntel">numero di tel</th>
+						<th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">Action</th>
+					</tr>
+				</thead>
+				<!-- <tbody id="lista-clienti"></tbody> --> 
+			</table>
+
+		</div>
+	</div>        
+</div>
+<!-- Add Modal HTML -->
+<div id="addModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form action="" method='POST'>
+				<div class="modal-header">						
+					<h4 class="modal-title">Add Cliente</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<div class="form-group">
+						<label>Ragione sociale</label>
+						<input type="text" id="ragionesociale" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label>Email</label>
+						<input type="email" id="email" class="form-control" required placeholder="nome@gmail.com">
+					</div>
+					<div class="form-group">
+						<label>Partita Iva</label>
+						<input type="text" id="partitaiva" class="form-control" required>
+					</div>	
+					<div class="form-group">
+						<label>Indirizzo</label>
+						<textarea id="indirizzo" class="form-control" required></textarea>
+					</div>
+					<div class="form-group">
+						<label>Telefono</label>
+						<input type="text" id="ntel" class="form-control" required>
+					</div>					
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="button" id="add" class="btn btn-success" value="Add">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<!-- Edit Modal HTML -->
+<div id="editModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">						
+					<h4 class="modal-title">Edit Cliente</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label>Id</label>
+						<input type="text" id="editid" class="form-control" disabled>
+					</div>					
+					<div class="form-group">
+						<label>Ragione sociale</label>
+						<input type="text" id="editragionesociale" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label>Email</label>
+						<input type="email" id="editemail" class="form-control" required placeholder="nome@gmail.com">
+					</div>
+					<div class="form-group">
+						<label>Partita Iva</label>
+						<input type="text" id="editpartitaiva" class="form-control" required>
+					</div>	
+					<div class="form-group">
+						<label>Indirizzo</label>
+						<textarea id="editindirizzo" class="form-control" required></textarea>
+					</div>
+					<div class="form-group">
+						<label>Telefono</label>
+						<input type="text" id="editntel" class="form-control" required>
+					</div>				
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="button" id="edit" class="btn btn-info" value="Edit">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<!-- Delete Modal HTML -->
+<!-- <div id="deleteModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">						
+					<h4 class="modal-title">Delete Client</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<p>Are you sure you want to delete these Records?</p>
+					<p class="text-warning"><small>This action cannot be undone.</small></p>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="button" id="delete" class="btn btn-danger" value="Delete">
+				</div>
+			</form>
+		</div>
+	</div>
+</div> -->
+
+<!-- Footer -->
+<footer class="page-footer font-small gray">
+
+	<!-- Copyright -->
+	<div class="footer-copyright text-center py-3">© 2021 Copyright:
+	  <a href="#"> NoPlay.com</a>
+	</div>
+	<!-- Copyright -->
+  
+  </footer>
+  <!-- Footer -->
+
+
+  <script src="js/adminClienteCrud.js"></script>
+
+</body>
+</html>
